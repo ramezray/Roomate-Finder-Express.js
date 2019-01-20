@@ -9,13 +9,13 @@ Created during Week 13 of University of Washington Coding Bootcamp. The goal was
 ![](images/api.PNG)
 
 # Technologies used
- JavaScript
- Node.js
- Express.js
- Path
+* JavaScript
+* Node.js
+* Express.js
+* Path
  
  # Author
- Ray Wasif
+ *Ray Wasif*
 
 
 
