@@ -1,6 +1,6 @@
 # Roomate-Finder-Express.js
 
-![](homePage.PNG)
+![](images/homePage.PNG)
 
 
 
