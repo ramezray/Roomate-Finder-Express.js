@@ -151,21 +151,21 @@
 
         <footer class="footer mt-5">
             <div class="container">
-                <p><a href="/api/roomates">API Roomates Link</a> | <a href="/github/repo">GitHub Repo</a>
+                <p><a href="/api/roomates">API Roomates Link</a> | <a href="https://github.com/ramezray/Roomate-Finder-Express.js">GitHub Repo</a>
             </div>
         </footer>
         <div id="myModal" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Closet Match</h5>
+                        <h5 class="modal-title">Closest Match</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p id="userMatch"></p>
-                        <img id="userMatchImage" src="" alt="SORRY, NO IMAGE Provided">
+                        <p id="userMatch" class="font-weight-bold"></p>
+                        <img id="userMatchImage" width="200" src="f" alt="SORRY, NO IMAGE Provided">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -227,11 +227,20 @@
                         Q10
                     ]
                 };
-                console.log(new_data.scores);
 
-                $.post("/api/roomates", new_data,
-                    function (data) {});
-                // Clear the form when submitting
+                $.post("/api/roomates", new_data).done(function (data) {
+                    $('#userMatch').html(data.matchPerson);
+                    $("#userMatchImage").attr("src", data.matchImg);
+                    $('#myModal').modal('toggle')
+                })
+
+            } else alert("Please fill up all fields");
+        });
+    </script>
+
+
+</body>
+<!-- // Clear the form when submitting
                 $("#name").val("");
                 $("#photo").val("");
                 $("#Q1").val("Open this select menu");
@@ -244,39 +253,6 @@
                 $("#Q8").val("Open this select menu");
                 $("#Q9").val("Open this select menu");
                 $("#Q10").val("Open this select menu");
-                $("#name").focus();
-
-                $.get("/api/roomates", new_data,
-                    function (data) {
-                        let matchPerson = "";
-                        let matchImg = "";
-                        let totalDif = 10000;
-                        let old_data = [];
-                        old_data = data
-                        for (let i = 0; i < old_data.length; i++) {
-                            let diff = 0;
-                            for (let j = 0; j < new_data.length; j++) {
-                                diff += Math.abs(old_data[i].scores[j] - new_data[j]);
-                            }
-                            if (diff < totalDif) {
-                                totalDif = diff;
-                                matchPerson = old_data[i].name;
-                                matchImg = old_data[i].photo;
-                                console.log(matchImg);
-                                $('#userMatch').html(matchPerson);
-                                $("#userMatchImage").attr("src", matchImg);
-                                // Pop open the modal dialog
-                                $('#myModal').modal('toggle')
-                            }
-                        }
-                        // console.log(data)
-                    });
-
-            } else alert("Please fill up all fields");
-        });
-    </script>
-
-
-</body>
+                $("#name").focus(); -->
 
 </html>
